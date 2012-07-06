@@ -10,8 +10,8 @@
 	<style type="text/css">
 	* {
 		color: #000;
-		font-size: 12px;
-		font-family: Verdana;
+		font-size: 10px;
+		font-family: Verdana, Arial, sans-serif;
 	}
 
 	.store-listing {
@@ -43,15 +43,15 @@
 	<body>
 	<h1>Stores</h1>
 	<xsl:for-each select="ArrayOfStore/Store[Location='Premium']">
-	<xsl:variable name="subaddr">
+	<xsl:variable name="AddressNum">
 		<xsl:value-of select="translate(Address, translate(Address, '01234567890', ''), '')"/>
 	</xsl:variable>
 	<div class="store-listing">
 		<span class="right"><xsl:value-of select="Manager"/></span>
 		<a href="http://www.coldwatercreek.com/StoreLocator/Store_Details.aspx?StoreID={ID}" class="store-name"><xsl:value-of select="Name"/></a> - <xsl:value-of select="ID"/><br />
 		<xsl:value-of select="Address"/><br />
-		<xsl:value-of select="City"/>, <xsl:value-of select="State"/>&#160;
-		<xsl:value-of select="Zip"/>-<xsl:value-of select="substring($subaddr, string-length($subaddr) - 3)"/>
+		<xsl:value-of select="City"/>, <xsl:value-of select="State"/>&#160;&#160;
+		<xsl:value-of select="Zip"/>-<xsl:value-of select="substring($AddressNum, string-length($AddressNum) - 3)"/>
 		<span class="right"><xsl:value-of select="translate(Phone, '.', '-')"/></span>
 	</div>
 	</xsl:for-each>
